@@ -12,6 +12,8 @@ import {
     Stack,
     Image,
 } from '@chakra-ui/react';
+import { useDispatch } from 'react-redux'
+import { fetchProductData } from './Redux/action'
 // import Product from './Product'
 const getLocalItmes = () => {
     let list = localStorage.getItem('lists');
@@ -26,12 +28,14 @@ const getLocalItmes = () => {
 
 
 const Home = () => {
+    const dispatch = useDispatch()
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState([])
     const [category, setCategory] = useState([])
     const color = useColorModeValue('white', 'gray.800')
     const [select, setSelect] = useState("");
     const [item, setItem] = useState(getLocalItmes())
+    const [search, setSearch] = useState("");
     // console.log(data);
     const config = {
         headers: { Authorization: `Bearer ${process.env.REACT_APP_TOKEN}` }
@@ -40,19 +44,27 @@ const Home = () => {
     useEffect(() => {
         setLoading(true)
         AllCategory();
-        AllProduct();
-    }, [])
+        AllProduct(search);
+        // dispatch(fetchProductData())
+    }, [search])
 
-    const AllProduct = () => {
+
+
+    const AllProduct = (search) => {
         axios.get("https://upayments-studycase-api.herokuapp.com/api/products", config)
-            .then((r) => {
+            .then((response) => {
+                var array = response.data.products;
+                var array = array.filter((e) =>
+                    e.category.toLowerCase().includes(search.toLowerCase()))
                 setLoading(false)
-                setData(r.data.products)
-            }).catch((e) => {
+                setData(array)
+            })
+            .catch((e) => {
                 console.log(e);
             })
     }
-    // console.log(category);
+
+    console.log("ketan", data);
 
     const AllCategory = () => {
         axios.get(`https://upayments-studycase-api.herokuapp.com/api/categories/`, config)
@@ -64,15 +76,14 @@ const Home = () => {
     }
 
     const selectCategory = async (e) => {
-
-        const Item = await data.filter((r) => { return r.category === e })
-        setData(Item)
+        setSearch(e)
     }
 
     const AddFavorite = (e) => {
         setItem([...item, e])
         alert("Item is added to Favorite")
     }
+
     useEffect(() => {
         localStorage.setItem('lists', JSON.stringify(item))
     }, [item]);
@@ -84,9 +95,10 @@ const Home = () => {
                 <SimpleGrid columns={[2, null, 5]} spacing='40px'>
                     {category?.map((e) =>
                         <Button
+                            marginLeft="5px"
                             size='md'
-                            height='48px'
-                            width='200px'
+                            height='38px'
+                            width='150px'
                             border='2px'
                             borderColor="rgb(255,51,153)"
                             onClick={() => selectCategory(e.name)}

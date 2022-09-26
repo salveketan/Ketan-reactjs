@@ -60,15 +60,33 @@ export default function Header() {
                             as={'nav'}
                             spacing={4}
                             display={{ base: 'none', md: 'flex' }}>
-                            {Links.map((link) => (
-                                <NavLink key={link}>{link}</NavLink>
-                            ))}
+                            <Link
+                                px={2}
+                                py={1}
+                                rounded={'md'}
+                                _hover={{
+                                    textDecoration: 'none',
+                                    bg: useColorModeValue('gray.200', 'gray.700'),
+                                }}
+                                href={"/about"}>
+                                about
+                            </Link>
+                            <Link
+                                px={2}
+                                py={1}
+                                rounded={'md'}
+                                _hover={{
+                                    textDecoration: 'none',
+                                    bg: useColorModeValue('gray.200', 'gray.700'),
+                                }}
+                                href={"/favorite"}>
+                                Favorite
+                            </Link>
+
                         </HStack>
                     </HStack>
                     <Flex alignItems={'center'} gap="20px">
-                        {/* <Button colorScheme='teal' onClick={onOpen}> */}
-                           <ButtonAll/>
-                        {/* </Button> */}
+                        <ButtonAll />
                         <Menu>
                             <MenuButton
                                 as={Button}
