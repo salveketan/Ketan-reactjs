@@ -64,7 +64,7 @@ const Home = () => {
             })
     }
 
-    console.log("ketan", data);
+    // console.log("ketan", data);
 
     const AllCategory = () => {
         axios.get(`https://upayments-studycase-api.herokuapp.com/api/categories/`, config)

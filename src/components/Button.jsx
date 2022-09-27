@@ -24,7 +24,7 @@ export default function ButtonAll() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const firstField = React.useRef()
     const [data, setData] = useState({
-        Name: "", Price: "", Category: "", Description: "", Avatar: "", DeveloperEmail: ""
+        name: "", price: "", category: "", description: "", avatar: "", developerEmail: ""
     })
 
 
@@ -34,6 +34,7 @@ export default function ButtonAll() {
         value = e.target.value;
         setData({ ...data, [name]: value })
     }
+    console.log(data);
 
     const config = {
         headers: { Authorization: `Bearer ${process.env.REACT_APP_TOKEN}` }
@@ -48,7 +49,7 @@ export default function ButtonAll() {
             console.log(e);
         })
     }
-    
+
     return (
         <>
             <Button colorScheme='teal' variant='outline' leftIcon={<AddIcon />} onClick={onOpen}>
@@ -75,8 +76,8 @@ export default function ButtonAll() {
                                     ref={firstField}
                                     id='name'
                                     placeholder='Please enter product name'
-                                    value={data.Name}
-                                    name="Name"
+                                    value={data.name}
+                                    name="name"
                                     onChange={handle}
                                 />
                             </Box>
@@ -89,8 +90,8 @@ export default function ButtonAll() {
                                         type='url'
                                         id='url'
                                         placeholder='Please enter url'
-                                        value={data.Avatar}
-                                        name="Avatar"
+                                        value={data.avatar}
+                                        name="avatar"
                                         onChange={handle}
                                     />
                                     <InputRightAddon>.com</InputRightAddon>
@@ -99,18 +100,18 @@ export default function ButtonAll() {
 
                             <Box>
                                 <FormLabel htmlFor='owner'>Select Category</FormLabel>
-                                <Select id='owner' name="Category" onChange={handle}>
-                                    <option value='clothing'>Clothing</option>
-                                    <option value='electronics'>Electronics</option>
-                                    <option value='accessories'>Accessories</option>
-                                    <option value='furniture'>Furniture</option>
-                                    <option value='hobby'>Hobby</option>
+                                <Select id='owner' name="category" onChange={handle}>
+                                    <option value='Clothing'>Clothing</option>
+                                    <option value='Electronics'>Electronics</option>
+                                    <option value='Accessories'>Accessories</option>
+                                    <option value='Furniture'>Furniture</option>
+                                    <option value='Hobby'>Hobby</option>
                                 </Select>
                             </Box>
 
                             <Box>
                                 <FormLabel htmlFor='desc'>Description</FormLabel>
-                                <Textarea id='desc' value={data.Description} name="Description" onChange={handle} />
+                                <Textarea id='desc' value={data.description} name="description" onChange={handle} />
                             </Box>
                             <Box>
                                 <FormLabel htmlFor='price'>Price</FormLabel>
@@ -119,8 +120,8 @@ export default function ButtonAll() {
                                     ref={firstField}
                                     id='price'
                                     placeholder='enter price'
-                                    value={data.Price}
-                                    name="Price"
+                                    value={data.price}
+                                    name="price"
                                     onChange={handle}
                                 />
                             </Box>
@@ -130,8 +131,8 @@ export default function ButtonAll() {
                                     ref={firstField}
                                     id='email'
                                     placeholder='Please enter register email'
-                                    value={data.DeveloperEmail}
-                                    name="DeveloperEmail"
+                                    value={data.developerEmail}
+                                    name="developerEmail"
                                     onChange={handle}
                                 />
                             </Box>
