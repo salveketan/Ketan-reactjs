@@ -185,7 +185,7 @@ const Home = () => {
                                                     </Stack>
                                                     <Box display={"flex"} gap="10px">
                                                         <Button color={"black"} onClick={() => AddFavorite(e)}>Add Favorite</Button>
-                                                        <Button color={"black"} onClick={() => AddFavorite(e)}>Delete</Button>
+                                                        {/* <Button color={"black"} onClick={() => AddFavorite(e)}>Delete</Button> */}
                                                     </Box>
                                                 </Stack>
                                             </Box>
