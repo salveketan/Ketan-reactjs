@@ -43,7 +43,8 @@ export default function ButtonAll() {
     const Submit = (e) => {
         e.preventDefault();
         axios.post("https://upayments-studycase-api.herokuapp.com/api/products", data, config).then((r) => {
-            console.log(r);
+            // console.log(r);
+            alert("Product is added succesfully")
         }).catch((e) => {
             alert(e)
             console.log(e);
