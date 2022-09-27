@@ -34,7 +34,7 @@ export default function ButtonAll() {
         value = e.target.value;
         setData({ ...data, [name]: value })
     }
-    console.log(data);
+    // console.log(data);
 
     const config = {
         headers: { Authorization: `Bearer ${process.env.REACT_APP_TOKEN}` }

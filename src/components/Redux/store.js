@@ -13,4 +13,4 @@ export const store = legacy_createStore(
     // composeEnhancers(applyMiddleware(thunk))
 );
 
-console.log(store.getState());
+// console.log(store.getState());
